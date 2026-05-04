@@ -3,8 +3,8 @@
 // ===============================
  
 const letters = document.querySelectorAll('.green-base a');
-const base     = document.querySelector(".green-base");
-const overlay  = document.querySelector(".green-overlay");
+const base    = document.querySelector(".green-base");
+const overlay = document.querySelector(".green-overlay");
  
 let activeLink = null;
 const isMobile = window.matchMedia("(hover: none)").matches;
@@ -148,71 +148,28 @@ window.addEventListener("load", updateColours);
  
  
 // ===============================
-// GOOGLE SHEETS CMS
+// PAGES CMS — single JSON file
 // ===============================
  
-const SHEET_BASE =
-  "https://docs.google.com/spreadsheets/d/1fm9eqTf06dpschr5B3eYyqqJowX3bnzKHsCabgP8xGM/export?format=csv&gid=";
+const CMS_FILE = "/content.json";
  
-const pages = {
-  "grasslands-page":  "289528533",
-  "research-page":    "1744533134",
-  "education-page":   "215026697",
-  "engagement-page":  "300892158",
-  "nursery-page":     "1392614358"
+const pageKeys = {
+  "grasslands-page": "grasslands",
+  "research-page":   "research",
+  "education-page":  "education",
+  "engagement-page": "engagement",
+  "nursery-page":    "nursery"
 };
  
-function parseCSV(text) {
-  const rows  = [];
-  let row     = [];
-  let field   = "";
-  let inQuote = false;
- 
-  for (let i = 0; i < text.length; i++) {
-    const ch   = text[i];
-    const next = text[i + 1];
- 
-    if (inQuote) {
-      if (ch === '"' && next === '"') { field += '"'; i++; }
-      else if (ch === '"') { inQuote = false; }
-      else { field += ch; }
-    } else {
-      if (ch === '"') { inQuote = true; }
-      else if (ch === ',') { row.push(field.trim()); field = ""; }
-      else if (ch === '\n') {
-        row.push(field.trim());
-        field = "";
-        if (row.some(c => c !== "")) rows.push(row);
-        row = [];
-      }
-      else if (ch === '\r') { /* ignore */ }
-      else { field += ch; }
-    }
-  }
- 
-  row.push(field.trim());
-  if (row.some(c => c !== "")) rows.push(row);
-  return rows.slice(1);
-}
- 
-function getBlock(cols) {
-  return {
-    layout: (cols[1] || "").trim().toLowerCase(),
-    text:   (cols[3] || "").trim(),
-    header: (cols[4] || "").trim(),
-    img:    (cols[5] || "").trim(),
-  };
-}
- 
 function renderBlock(b) {
-  if (b.layout === "text") {
+  if (b.type === "text") {
     return `<div class="cms-block cms-text"><p>${b.text}</p></div>`;
   }
-  if (b.layout === "heading") {
+  if (b.type === "heading") {
     return `<div class="cms-block cms-heading"><h2>${b.text}</h2></div>`;
   }
-  if (b.layout === "list") {
-    const items = b.text
+  if (b.type === "list") {
+    const items = (b.text || "")
       .split(/\n|•/)
       .map(s => s.trim())
       .filter(s => s.length > 0);
@@ -223,25 +180,28 @@ function renderBlock(b) {
         <ul>${items.map(item => `<li>${item}</li>`).join("")}</ul>
       </div>`;
   }
-  if (b.layout === "image") {
-    if (!b.img) return "";
+  if (b.type === "image") {
+    if (!b.image) return "";
+    const alt = b.alt || "";
     return `
       <div class="cms-block cms-image">
-        <img src="${b.img}" alt="" loading="lazy" />
+        <img src="${b.image}" alt="${alt}" loading="lazy" />
       </div>`;
   }
   return "";
 }
  
-function buildPanel(rows) {
-  const blocks = rows.map(getBlock).filter(b => b.layout !== "");
+function buildPanel(blocks) {
   const segments = [];
   let colGroup = [];
  
   blocks.forEach(b => {
-    const isFull = b.layout === "intro" || b.layout === "heading";
+    const isFull = b.type === "intro" || b.type === "heading";
     if (isFull) {
-      if (colGroup.length) { segments.push({ type: "columns", blocks: colGroup }); colGroup = []; }
+      if (colGroup.length) {
+        segments.push({ type: "columns", blocks: colGroup });
+        colGroup = [];
+      }
       segments.push({ type: "full", block: b });
     } else {
       colGroup.push(b);
@@ -255,8 +215,8 @@ function buildPanel(rows) {
   segments.forEach(seg => {
     if (seg.type === "full") {
       const b = seg.block;
-      if (b.layout === "intro")   html += `<div class="cms-full cms-intro"><p>${b.text}</p></div>`;
-      if (b.layout === "heading") html += `<div class="cms-full cms-heading"><h2>${b.text}</h2></div>`;
+      if (b.type === "intro")   html += `<div class="cms-full cms-intro"><p>${b.text}</p></div>`;
+      if (b.type === "heading") html += `<div class="cms-full cms-heading"><h2>${b.text}</h2></div>`;
       return;
     }
     const all   = seg.blocks;
@@ -271,30 +231,37 @@ function buildPanel(rows) {
   return html;
 }
  
-Object.entries(pages).forEach(([pageName, gid]) => {
+// Show loading state in each panel
+Object.keys(pageKeys).forEach(pageName => {
   const panel = document.querySelector(`[data-page="${pageName}"] .panel-content`);
-  if (!panel) return;
+  if (panel) panel.innerHTML = `<p style="opacity:0.4;font-size:0.9rem;">Loading…</p>`;
+});
  
-  panel.innerHTML = `<p style="opacity:0.4;font-size:0.9rem;">Loading…</p>`;
+fetch(CMS_FILE)
+  .then(res => {
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  })
+  .then(data => {
+    Object.entries(pageKeys).forEach(([pageName, key]) => {
+      const panel = document.querySelector(`[data-page="${pageName}"] .panel-content`);
+      if (!panel) return;
  
-  fetch(SHEET_BASE + gid)
-    .then(res => {
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.text();
-    })
-    .then(csv => {
-      const rows = parseCSV(csv);
-      panel.innerHTML = buildPanel(rows);
+      const blocks = (data[key] && data[key].blocks) || [];
+      panel.innerHTML = buildPanel(blocks);
+ 
       panel.querySelectorAll('a').forEach(link => {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
       });
-    })
-    .catch(err => {
-      console.error(`Sheet error [${pageName}]:`, err);
+    });
+  })
+  .catch(err => {
+    console.error("CMS load error:", err);
+    document.querySelectorAll(".panel-content").forEach(panel => {
       panel.innerHTML = `<p style="opacity:0.5;">Content unavailable.</p>`;
     });
-});
+  });
  
  
 // ===============================
@@ -306,14 +273,10 @@ const panels = document.querySelectorAll(".panel");
 // Get the top of the slider section (above all panels)
 // then add each collapsed panel's height to reach the right panel
 function scrollToPanel(panel) {
-  // Collect all panels in order
   const allPanels = [...panels];
   const idx = allPanels.indexOf(panel);
-  // Get the slider's top position (stable — never changes)
   const sliderTop = document.getElementById("contentSlider").offsetTop;
-  // Each collapsed tab height — read from first panel's actual height
   const tabHeight = allPanels[0].querySelector(".panel-title").offsetHeight;
-  // Target = slider top + (number of tabs above this panel × tab height)
   const scrollTarget = sliderTop + (idx * tabHeight) - 62;
   window.scrollTo({ top: scrollTarget, behavior: "smooth" });
 }
