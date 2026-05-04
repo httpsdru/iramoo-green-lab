@@ -10,17 +10,17 @@
         "text": "The western basalt plains grasslands are one of Australia's most threatened ecosystems. Iramoo Wildflower Grassland is a remnant of this ancient landscape — a living archive of plants, soils and stories that have shaped this Country for millennia."
       },
       {
-        "type": "heading",
-        "text": "What we protect"
-      },
-      {
-        "type": "text",
-        "text": "Iramoo holds more than 200 indigenous plant species, including rare wildflowers, native grasses and ground orchids found nowhere else in the region. Each season brings a different bloom, a different story."
+        "type": "intro",
+        "text": "The GREEN Lab has strong links to the three grasslands managed by the Cairnlea Conservation Reserves Committee of Management:"
       },
       {
         "type": "list",
-        "header": "Key species",
-        "text": "Kangaroo Grass (Themeda triandra)\nSpiny Rice-flower (Pimelea spinescens)\nButton Wrinklewort (Rutidosis leptorrhynchoides)\nMatted Flax-lily (Dianella amoena)\nGolden Sun Moth (Synemon plana)"
+        "text": "Iramoo Wildflower Grassland Reserve \nFeatherheads Wildflower Grassland \nPimelea Wildflower Grassland \n"
+      },
+      {
+        "type": "list",
+        "text": "Kangaroo Grass (Themeda triandra)\nSpiny Rice-flower (Pimelea spinescens)\nButton Wrinklewort (Rutidosis leptorrhynchoides)\nMatted Flax-lily (Dianella amoena)\nGolden Sun Moth (Synemon plana)",
+        "header": "Key species"
       },
       {
         "type": "image",
@@ -49,8 +49,8 @@
       },
       {
         "type": "list",
-        "header": "Research themes",
-        "text": "Cultural fire and grassland renewal\nNative seed banking and germination\nGrassland soil health\nClimate resilience of remnant ecosystems"
+        "text": "Cultural fire and grassland renewal\nNative seed banking and germination\nGrassland soil health\nClimate resilience of remnant ecosystems",
+        "header": "Research themes"
       }
     ]
   },
@@ -74,8 +74,8 @@
       },
       {
         "type": "list",
-        "header": "We offer",
-        "text": "Guided grassland walks\nSeasonal wildflower identification sessions\nTeacher professional development\nUniversity field placements"
+        "text": "Guided grassland walks\nSeasonal wildflower identification sessions\nTeacher professional development\nUniversity field placements",
+        "header": "We offer"
       }
     ]
   },
@@ -99,8 +99,8 @@
       },
       {
         "type": "list",
-        "header": "Our partners",
-        "text": "Moondani Balluk Indigenous Academic Unit\nFriends of Iramoo\nCairnlea Conservation Reserves Committee of Management\nMelbourne Water\nLandcare Australia"
+        "text": "Moondani Balluk Indigenous Academic Unit\nFriends of Iramoo\nCairnlea Conservation Reserves Committee of Management\nMelbourne Water\nLandcare Australia",
+        "header": "Our partners"
       }
     ]
   },
@@ -124,8 +124,8 @@
       },
       {
         "type": "list",
-        "header": "Nursery hours",
-        "text": "Wednesdays 10am – 2pm\nFirst Saturday of the month 9am – 12pm\nGroup visits by appointment"
+        "text": "Wednesdays 10am – 2pm\nFirst Saturday of the month 9am – 12pm\nGroup visits by appointment",
+        "header": "Nursery hours"
       }
     ]
   }
