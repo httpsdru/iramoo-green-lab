@@ -1,0 +1,104 @@
+media: assets/images
+
+content:
+  - name: site-content
+    label: Site Content
+    path: content.json
+    type: file
+    format: json
+    fields:
+      - name: grasslands
+        label: Grasslands
+        type: object
+        fields:
+          - name: blocks
+            label: Content blocks
+            type: object
+            list: true
+            fields:
+              - name: type
+                label: Block type
+                type: select
+                options:
+                  values:
+                    - intro
+                    - heading
+                    - text
+                    - list
+                    - image
+              - name: text
+                label: Text
+                type: text
+                description: "Used for intro, heading, text, and list blocks. For lists, separate each item with a new line."
+              - name: header
+                label: List header (optional)
+                type: string
+                description: "Only used for 'list' blocks — appears above the bulleted list."
+              - name: image
+                label: Image
+                type: image
+                description: "Only used for 'image' blocks."
+              - name: alt
+                label: Image alt text
+                type: string
+                description: "Only used for 'image' blocks. Describes the image for accessibility."
+
+      - name: research
+        label: Research
+        type: object
+        fields:
+          - name: blocks
+            label: Content blocks
+            type: object
+            list: true
+            fields:
+              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+              - { name: text, label: Text, type: text }
+              - { name: header, label: List header (optional), type: string }
+              - { name: image, label: Image, type: image }
+              - { name: alt, label: Image alt text, type: string }
+
+      - name: education
+        label: Education
+        type: object
+        fields:
+          - name: blocks
+            label: Content blocks
+            type: object
+            list: true
+            fields:
+              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+              - { name: text, label: Text, type: text }
+              - { name: header, label: List header (optional), type: string }
+              - { name: image, label: Image, type: image }
+              - { name: alt, label: Image alt text, type: string }
+
+      - name: engagement
+        label: Engagement
+        type: object
+        fields:
+          - name: blocks
+            label: Content blocks
+            type: object
+            list: true
+            fields:
+              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+              - { name: text, label: Text, type: text }
+              - { name: header, label: List header (optional), type: string }
+              - { name: image, label: Image, type: image }
+              - { name: alt, label: Image alt text, type: string }
+
+      - name: nursery
+        label: Nursery
+        type: object
+        fields:
+          - name: blocks
+            label: Content blocks
+            type: object
+            list: true
+            fields:
+              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+              - { name: text, label: Text, type: text }
+              - { name: header, label: List header (optional), type: string }
+              - { name: image, label: Image, type: image }
+              - { name: alt, label: Image alt text, type: string }

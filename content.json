@@ -1,0 +1,132 @@
+{
+  "grasslands": {
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Grasslands"
+      },
+      {
+        "type": "intro",
+        "text": "The western basalt plains grasslands are one of Australia's most threatened ecosystems. Iramoo Wildflower Grassland is a remnant of this ancient landscape — a living archive of plants, soils and stories that have shaped this Country for millennia."
+      },
+      {
+        "type": "heading",
+        "text": "What we protect"
+      },
+      {
+        "type": "text",
+        "text": "Iramoo holds more than 200 indigenous plant species, including rare wildflowers, native grasses and ground orchids found nowhere else in the region. Each season brings a different bloom, a different story."
+      },
+      {
+        "type": "list",
+        "header": "Key species",
+        "text": "Kangaroo Grass (Themeda triandra)\nSpiny Rice-flower (Pimelea spinescens)\nButton Wrinklewort (Rutidosis leptorrhynchoides)\nMatted Flax-lily (Dianella amoena)\nGolden Sun Moth (Synemon plana)"
+      },
+      {
+        "type": "image",
+        "image": "/assets/images/grasslands-1.jpg",
+        "alt": "Iramoo grassland in spring bloom"
+      }
+    ]
+  },
+  "research": {
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Research"
+      },
+      {
+        "type": "intro",
+        "text": "Our research bridges Indigenous knowledge and Western science to better understand, restore and care for native grassland ecosystems."
+      },
+      {
+        "type": "heading",
+        "text": "Current projects"
+      },
+      {
+        "type": "text",
+        "text": "Active investigations into seed germination, soil microbiology, fire ecology and the role of cultural burning in grassland regeneration. Projects run in partnership with Moondani Balluk and the Institute for Sustainable and Liveable Cities."
+      },
+      {
+        "type": "list",
+        "header": "Research themes",
+        "text": "Cultural fire and grassland renewal\nNative seed banking and germination\nGrassland soil health\nClimate resilience of remnant ecosystems"
+      }
+    ]
+  },
+  "education": {
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Education"
+      },
+      {
+        "type": "intro",
+        "text": "We host school groups, university classes and community workshops on the grassland — learning by walking, looking, and listening to Country."
+      },
+      {
+        "type": "heading",
+        "text": "Programs"
+      },
+      {
+        "type": "text",
+        "text": "Curriculum-aligned excursions for primary and secondary schools. Tertiary field studies in ecology, restoration and Indigenous land management. Open days and workshops for the public."
+      },
+      {
+        "type": "list",
+        "header": "We offer",
+        "text": "Guided grassland walks\nSeasonal wildflower identification sessions\nTeacher professional development\nUniversity field placements"
+      }
+    ]
+  },
+  "engagement": {
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Engagement"
+      },
+      {
+        "type": "intro",
+        "text": "GREEN Lab is a meeting place. We work with community groups, traditional custodians, councils and volunteers to care for the grasslands together."
+      },
+      {
+        "type": "heading",
+        "text": "Get involved"
+      },
+      {
+        "type": "text",
+        "text": "Volunteer days run year-round — weeding, seed collection, monitoring and planting. No experience needed. Tools, gloves and morning tea provided."
+      },
+      {
+        "type": "list",
+        "header": "Our partners",
+        "text": "Moondani Balluk Indigenous Academic Unit\nFriends of Iramoo\nCairnlea Conservation Reserves Committee of Management\nMelbourne Water\nLandcare Australia"
+      }
+    ]
+  },
+  "nursery": {
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Nursery"
+      },
+      {
+        "type": "intro",
+        "text": "Iramoo Native Plant Nursery propagates indigenous species from locally collected seed — supplying restoration projects, schools, gardens and councils across Melbourne's west."
+      },
+      {
+        "type": "heading",
+        "text": "What we grow"
+      },
+      {
+        "type": "text",
+        "text": "Tubestock and advanced plants of grasses, lilies, daisies, orchids and shrubs native to the basalt plains. All seed is provenance-tracked from the Iramoo grassland and surrounding remnants."
+      },
+      {
+        "type": "list",
+        "header": "Nursery hours",
+        "text": "Wednesdays 10am – 2pm\nFirst Saturday of the month 9am – 12pm\nGroup visits by appointment"
+      }
+    ]
+  }
+}
