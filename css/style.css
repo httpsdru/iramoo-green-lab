@@ -788,7 +788,7 @@ a.footer-contact-line:hover {
   .footer-inner {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: clamp(28px, 7vw, 48px);
   }
 
   .footer-left,
@@ -804,13 +804,13 @@ a.footer-contact-line:hover {
   }
 
   .footer-logos img {
-    height: clamp(36px, 9vw, 120px);
+    height: clamp(28px, 10vw, 56px);
     max-width: 100%;
     width: auto;
   }
 
   .footer-logos a:last-child img {
-    height: clamp(70px, 18vw, 120px);
+    height: clamp(56px, 20vw, 110px);
   }
 
   .footer-snake {
@@ -858,6 +858,16 @@ a.footer-contact-line:hover {
   pointer-events: none;
 }
  
+.loader-inner p span {
+  display: inline-block;
+  animation: loaderLetter 1.4s ease-in-out infinite;
+}
+
+@keyframes loaderLetter {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-10px); }
+}
+
 /* ======================= */
 /* CUSTOM CURSOR           */
 /* ======================= */

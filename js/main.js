@@ -399,6 +399,23 @@ document.querySelectorAll(".panel").forEach(panel => {
  
  
 // ===============================
+// LOADER LETTER ANIMATION
+// ===============================
+// Wraps each letter of "Loading Grasslands..." in a span with a
+// staggered animation-delay so they take turns lifting up.
+ 
+(function animateLoaderText() {
+  const loaderP = document.querySelector('#loader .loader-inner p');
+  if (!loaderP) return;
+  const text = loaderP.textContent;
+  loaderP.innerHTML = [...text].map((ch, i) => {
+    if (ch === ' ') return ' ';
+    return `<span style="animation-delay:${i * 0.08}s">${ch}</span>`;
+  }).join('');
+})();
+ 
+ 
+// ===============================
 // LOAD
 // ===============================
  
