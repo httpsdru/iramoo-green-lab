@@ -22,19 +22,7 @@ content:
     fields:
       - { name: text, label: Text, type: text }
  
-  - name: contact
-    label: Contact
-    path: content/contact.json
-    type: file
-    format: json
-    fields:
-      - { name: heading, label: Heading, type: string }
-      - { name: address, label: Address, type: string }
-      - { name: addressLink, label: Address link (Google Maps URL), type: string }
-      - { name: phone, label: Phone, type: string }
-      - { name: email, label: Email, type: string }
-      - { name: credit, label: Footer credit line, type: text }
- 
+
   - name: grasslands
     label: Grasslands
     path: content/grasslands.json
@@ -119,4 +107,17 @@ content:
           - { name: header, label: List header (optional), type: string }
           - { name: image, label: Image, type: image }
           - { name: caption, label: Image caption, type: string }
+ 
+  - name: contact
+    label: Contact
+    path: content/contact.json
+    type: file
+    format: json
+    fields:
+      - { name: heading, label: Heading, type: string }
+      - { name: address, label: Address, type: string }
+      - { name: addressLink, label: Address link (Google Maps URL), type: string }
+      - { name: phone, label: Phone, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: credit, label: Footer credit line, type: text }
  
