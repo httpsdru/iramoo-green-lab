@@ -770,7 +770,7 @@ a.footer-contact-line:hover {
  
 .footer-snake {
   position: absolute;
-  top: 0;
+  top: 20px;
   right: 0;
   height: 200px;
   width: 80%;
@@ -799,7 +799,7 @@ a.footer-contact-line:hover {
   .footer-logos {
     justify-content: center;
     align-items: center;
-    gap: clamp(16px, 4vw, 24px);
+    gap: clamp(16px, 6vw, 30px);
     margin-top: clamp(16px, 5vw, 32px);
     flex-wrap: wrap;
   }
@@ -822,9 +822,9 @@ a.footer-contact-line:hover {
   .footer-snake {
     width: 120%;
     height: auto;
-    margin-top: 60px;
+    margin-top: 0px;
     right: -20%;
-  }
+}
 
 }
  
