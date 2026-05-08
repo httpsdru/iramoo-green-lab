@@ -804,7 +804,7 @@ a.footer-contact-line:hover {
   }
 
   .footer-logos img {
-    height: clamp(72px, 9vw, 120px);
+    height: clamp(36px, 9vw, 120px);
     max-width: 100%;
     width: auto;
   }
