@@ -17,9 +17,13 @@
       "text": "[Iramoo Wildflower Grassland Reserve] (https://friendsofiramoograsslands.wordpress.com/iramoo-wildflower-grassland-reserve/)\n[Featherheads Wildflower Grassland](https://friendsofiramoograsslands.wordpress.com/featherheads-wildflower-grassland/)\nPimelea Wildflower Grassland (https:\\friendsofiramoograsslands.wordpress.com\\pimelea-wildflower-reserve\\)\n"
     },
     {
-      "type": "list",
-      "text": "Kangaroo Grass (Themeda triandra)\nSpiny Rice-flower (Pimelea spinescens)\nButton Wrinklewort (Rutidosis leptorrhynchoides)\nMatted Flax-lily (Dianella amoena)\nGolden Sun Moth (Synemon plana)",
+      "type": "text",
+      "text": "These reserves are part of the Jones Creek Grassland Corridor [MO1.1]that also includes a range of protected and unprotected remnant native grasslands, including:",
       "header": "Key species"
+    },
+    {
+      "type": "list",
+      "text": "Howardsons Circuit Grassland (Brimbank City Council)\nReconciliation Rocks Grassland (Victoria University)\nVU grassland (Victoria University)\nJonesfield Corner (private ownership)\nSection G grassland (State of Victoria)\nDenton Avenue Grassland (Brimbank City Council)\n"
     },
     {
       "type": "image",
