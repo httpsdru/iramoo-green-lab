@@ -1,112 +1,122 @@
 media: assets/images
  
 content:
-  - name: site-content
-    label: Site Content
-    path: content.json
+ 
+  - name: acknowledgement
+    label: Acknowledgement of Country
+    path: content/acknowledgement.json
     type: file
     format: json
     fields:
+      - { name: label, label: Heading label, type: string }
+      - { name: body, label: Body text, type: text }
+      - { name: buttonText, label: Button text, type: string }
+      - { name: artwork, label: Artwork image, type: image }
+      - { name: caption, label: Artwork caption, type: string }
  
-      - name: acknowledgement
-        label: Acknowledgement of Country
-        type: object
-        fields:
-          - { name: label, label: Heading label, type: string }
-          - { name: body, label: Body text, type: text }
-          - { name: buttonText, label: Button text, type: string }
-          - { name: artwork, label: Artwork image, type: image }
-          - { name: caption, label: Artwork caption, type: string }
+  - name: about
+    label: About (intro paragraph)
+    path: content/about.json
+    type: file
+    format: json
+    fields:
+      - { name: text, label: Text, type: text }
  
-      - name: about
-        label: About (intro paragraph)
+  - name: contact
+    label: Contact
+    path: content/contact.json
+    type: file
+    format: json
+    fields:
+      - { name: heading, label: Heading, type: string }
+      - { name: address, label: Address, type: string }
+      - { name: addressLink, label: Address link (Google Maps URL), type: string }
+      - { name: phone, label: Phone, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: credit, label: Footer credit line, type: text }
+ 
+  - name: grasslands
+    label: Grasslands
+    path: content/grasslands.json
+    type: file
+    format: json
+    fields:
+      - name: blocks
+        label: Content blocks
         type: object
+        list: true
         fields:
+          - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
           - { name: text, label: Text, type: text }
+          - { name: header, label: List header (optional), type: string }
+          - { name: image, label: Image, type: image }
+          - { name: caption, label: Image caption, type: string }
  
-      - name: contact
-        label: Contact
+  - name: research
+    label: Research
+    path: content/research.json
+    type: file
+    format: json
+    fields:
+      - name: blocks
+        label: Content blocks
         type: object
+        list: true
         fields:
-          - { name: heading, label: Heading, type: string }
-          - { name: address, label: Address, type: string }
-          - { name: addressLink, label: Address link (Google Maps URL), type: string }
-          - { name: phone, label: Phone, type: string }
-          - { name: email, label: Email, type: string }
-          - { name: credit, label: Footer credit line, type: text }
+          - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+          - { name: text, label: Text, type: text }
+          - { name: header, label: List header (optional), type: string }
+          - { name: image, label: Image, type: image }
+          - { name: caption, label: Image caption, type: string }
  
-      - name: grasslands
-        label: Grasslands
+  - name: education
+    label: Education
+    path: content/education.json
+    type: file
+    format: json
+    fields:
+      - name: blocks
+        label: Content blocks
         type: object
+        list: true
         fields:
-          - name: blocks
-            label: Content blocks
-            type: object
-            list: true
-            fields:
-              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
-              - { name: text, label: Text, type: text }
-              - { name: header, label: List header (optional), type: string }
-              - { name: image, label: Image, type: image }
-              - { name: caption, label: Image caption, type: string }
+          - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+          - { name: text, label: Text, type: text }
+          - { name: header, label: List header (optional), type: string }
+          - { name: image, label: Image, type: image }
+          - { name: caption, label: Image caption, type: string }
  
-      - name: research
-        label: Research
+  - name: engagement
+    label: Engagement
+    path: content/engagement.json
+    type: file
+    format: json
+    fields:
+      - name: blocks
+        label: Content blocks
         type: object
+        list: true
         fields:
-          - name: blocks
-            label: Content blocks
-            type: object
-            list: true
-            fields:
-              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
-              - { name: text, label: Text, type: text }
-              - { name: header, label: List header (optional), type: string }
-              - { name: image, label: Image, type: image }
-              - { name: caption, label: Image caption, type: string }
+          - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+          - { name: text, label: Text, type: text }
+          - { name: header, label: List header (optional), type: string }
+          - { name: image, label: Image, type: image }
+          - { name: caption, label: Image caption, type: string }
  
-      - name: education
-        label: Education
+  - name: nursery
+    label: Nursery
+    path: content/nursery.json
+    type: file
+    format: json
+    fields:
+      - name: blocks
+        label: Content blocks
         type: object
+        list: true
         fields:
-          - name: blocks
-            label: Content blocks
-            type: object
-            list: true
-            fields:
-              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
-              - { name: text, label: Text, type: text }
-              - { name: header, label: List header (optional), type: string }
-              - { name: image, label: Image, type: image }
-              - { name: caption, label: Image caption, type: string }
- 
-      - name: engagement
-        label: Engagement
-        type: object
-        fields:
-          - name: blocks
-            label: Content blocks
-            type: object
-            list: true
-            fields:
-              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
-              - { name: text, label: Text, type: text }
-              - { name: header, label: List header (optional), type: string }
-              - { name: image, label: Image, type: image }
-              - { name: caption, label: Image caption, type: string }
- 
-      - name: nursery
-        label: Nursery
-        type: object
-        fields:
-          - name: blocks
-            label: Content blocks
-            type: object
-            list: true
-            fields:
-              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
-              - { name: text, label: Text, type: text }
-              - { name: header, label: List header (optional), type: string }
-              - { name: image, label: Image, type: image }
-              - { name: caption, label: Image caption, type: string }
+          - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+          - { name: text, label: Text, type: text }
+          - { name: header, label: List header (optional), type: string }
+          - { name: image, label: Image, type: image }
+          - { name: caption, label: Image caption, type: string }
  

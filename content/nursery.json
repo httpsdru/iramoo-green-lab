@@ -1,0 +1,25 @@
+{
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Nursery"
+    },
+    {
+      "type": "intro",
+      "text": "Iramoo Native Plant Nursery propagates indigenous species from locally collected seed — supplying restoration projects, schools, gardens and councils across Melbourne's west."
+    },
+    {
+      "type": "heading",
+      "text": "What we grow"
+    },
+    {
+      "type": "text",
+      "text": "Tubestock and advanced plants of grasses, lilies, daisies, orchids and shrubs native to the basalt plains. All seed is provenance-tracked from the Iramoo grassland and surrounding remnants."
+    },
+    {
+      "type": "list",
+      "header": "Nursery hours",
+      "text": "Wednesdays 10am – 2pm\nFirst Saturday of the month 9am – 12pm\nGroup visits by appointment"
+    }
+  ]
+}

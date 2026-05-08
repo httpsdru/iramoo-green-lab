@@ -1,0 +1,25 @@
+{
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Research"
+    },
+    {
+      "type": "intro",
+      "text": "Our research bridges Indigenous knowledge and Western science to better understand, restore and care for native grassland ecosystems."
+    },
+    {
+      "type": "heading",
+      "text": "Current projects"
+    },
+    {
+      "type": "text",
+      "text": "Active investigations into seed germination, soil microbiology, fire ecology and the role of cultural burning in grassland regeneration. Projects run in partnership with Moondani Balluk and the Institute for Sustainable and Liveable Cities."
+    },
+    {
+      "type": "list",
+      "header": "Research themes",
+      "text": "Cultural fire and grassland renewal\nNative seed banking and germination\nGrassland soil health\nClimate resilience of remnant ecosystems"
+    }
+  ]
+}

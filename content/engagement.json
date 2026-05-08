@@ -1,0 +1,25 @@
+{
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Engagement"
+    },
+    {
+      "type": "intro",
+      "text": "GREEN Lab is a meeting place. We work with community groups, traditional custodians, councils and volunteers to care for the grasslands together."
+    },
+    {
+      "type": "heading",
+      "text": "Get involved"
+    },
+    {
+      "type": "text",
+      "text": "Volunteer days run year-round — weeding, seed collection, monitoring and planting. No experience needed. Tools, gloves and morning tea provided."
+    },
+    {
+      "type": "list",
+      "header": "Our partners",
+      "text": "Moondani Balluk Indigenous Academic Unit\nFriends of Iramoo\nCairnlea Conservation Reserves Committee of Management\nMelbourne Water\nLandcare Australia"
+    }
+  ]
+}

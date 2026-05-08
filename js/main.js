@@ -49,7 +49,6 @@ letters.forEach(link => {
   }
 });
  
-// Tap on the overlay word → navigate
 if (isMobile) {
   overlay.addEventListener("click", function(e) {
     e.stopPropagation();
@@ -148,10 +147,19 @@ window.addEventListener("load", updateColours);
  
  
 // ===============================
-// PAGES CMS — single JSON file
+// PAGES CMS — separate JSON files
 // ===============================
  
-const CMS_FILE = "/content.json";
+const CMS_FILES = {
+  acknowledgement: "/content/acknowledgement.json",
+  about:           "/content/about.json",
+  contact:         "/content/contact.json",
+  grasslands:      "/content/grasslands.json",
+  research:        "/content/research.json",
+  education:       "/content/education.json",
+  engagement:      "/content/engagement.json",
+  nursery:         "/content/nursery.json"
+};
  
 const pageKeys = {
   "grasslands-page": "grasslands",
@@ -284,45 +292,59 @@ function applyContact(c) {
   if (creditEl && c.credit) creditEl.innerHTML = parseLinks(c.credit);
 }
  
+function applyPanel(pageName, key, data) {
+  const panel = document.querySelector(`[data-page="${pageName}"] .panel-content`);
+  if (!panel) return;
+ 
+  const blocks = (data && data.blocks) || [];
+  panel.innerHTML = buildPanel(blocks);
+ 
+  panel.querySelectorAll('a').forEach(link => {
+    if (link.getAttribute('href')?.startsWith('http')) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+}
+ 
 // Show loading state in each panel
 Object.keys(pageKeys).forEach(pageName => {
   const panel = document.querySelector(`[data-page="${pageName}"] .panel-content`);
   if (panel) panel.innerHTML = `<p style="opacity:0.4;font-size:0.9rem;">Loading…</p>`;
 });
  
-fetch(CMS_FILE)
-  .then(res => {
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return res.json();
-  })
-  .then(data => {
-    // Site-wide content
-    applyAcknowledgement(data.acknowledgement);
-    applyAbout(data.about);
-    applyContact(data.contact);
+// Fetch each file independently, so one failure doesn't block the rest
+function loadJSON(path) {
+  return fetch(path)
+    .then(res => res.ok ? res.json() : null)
+    .catch(err => {
+      console.error(`Failed to load ${path}:`, err);
+      return null;
+    });
+}
  
-    // Panel content
-    Object.entries(pageKeys).forEach(([pageName, key]) => {
+Promise.all(
+  Object.entries(CMS_FILES).map(([key, path]) =>
+    loadJSON(path).then(data => [key, data])
+  )
+).then(entries => {
+  const data = Object.fromEntries(entries);
+ 
+  // Site-wide content
+  applyAcknowledgement(data.acknowledgement);
+  applyAbout(data.about);
+  applyContact(data.contact);
+ 
+  // Panels
+  Object.entries(pageKeys).forEach(([pageName, key]) => {
+    if (data[key]) {
+      applyPanel(pageName, key, data[key]);
+    } else {
       const panel = document.querySelector(`[data-page="${pageName}"] .panel-content`);
-      if (!panel) return;
- 
-      const blocks = (data[key] && data[key].blocks) || [];
-      panel.innerHTML = buildPanel(blocks);
- 
-      panel.querySelectorAll('a').forEach(link => {
-        if (link.getAttribute('href')?.startsWith('http')) {
-          link.setAttribute('target', '_blank');
-          link.setAttribute('rel', 'noopener noreferrer');
-        }
-      });
-    });
-  })
-  .catch(err => {
-    console.error("CMS load error:", err);
-    document.querySelectorAll(".panel-content").forEach(panel => {
-      panel.innerHTML = `<p style="opacity:0.5;">Content unavailable.</p>`;
-    });
+      if (panel) panel.innerHTML = `<p style="opacity:0.5;">Content unavailable.</p>`;
+    }
   });
+});
  
  
 // ===============================
@@ -426,4 +448,3 @@ document.addEventListener("mouseover", e => {
     cursor.classList.remove("hovering");
   }
 });
- 
