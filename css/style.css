@@ -464,6 +464,16 @@ header.dark a {
   color: #083d1c;
 }
  
+.cms-image .cms-caption {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-weight: 300;
+  color: #083d1c;
+  opacity: 0.6;
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+}
+
 /* Heading highlight */
 .cms-heading h2 {
   font-size: 2.4rem;

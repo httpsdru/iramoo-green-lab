@@ -191,10 +191,12 @@ function renderBlock(b) {
   }
   if (b.type === "image") {
     if (!b.image) return "";
-    const alt = b.alt || "";
+    const caption = b.caption || "";
+    const captionHTML = caption ? `<p class="cms-caption">${parseLinks(caption)}</p>` : "";
     return `
       <div class="cms-block cms-image">
-        <img src="${b.image}" alt="${alt}" loading="lazy" />
+        <img src="${b.image}" alt="${caption.replace(/"/g, '&quot;')}" loading="lazy" />
+        ${captionHTML}
       </div>`;
   }
   return "";
@@ -240,6 +242,48 @@ function buildPanel(blocks) {
   return html;
 }
  
+// ----- Site-wide content injection -----
+ 
+function applyAcknowledgement(ack) {
+  if (!ack) return;
+  const labelEl   = document.querySelector('.ack-label');
+  const bodyEl    = document.querySelector('.ack-body');
+  const btnEl     = document.getElementById('ack-enter');
+  const imgEl     = document.querySelector('.ack-artwork img');
+  const captionEl = document.querySelector('.ack-caption');
+ 
+  if (labelEl   && ack.label)       labelEl.textContent = ack.label;
+  if (bodyEl    && ack.body)        bodyEl.innerHTML    = parseLinks(ack.body);
+  if (btnEl     && ack.buttonText)  btnEl.textContent   = ack.buttonText;
+  if (imgEl     && ack.artwork)     imgEl.src           = ack.artwork;
+  if (captionEl && ack.caption)     captionEl.textContent = ack.caption;
+}
+ 
+function applyAbout(about) {
+  if (!about || !about.text) return;
+  const el = document.querySelector('.intro-text p');
+  if (el) el.innerHTML = parseLinks(about.text);
+}
+ 
+function applyContact(c) {
+  if (!c) return;
+ 
+  const wrap = document.querySelector('.footer-contact');
+  if (wrap) {
+    wrap.innerHTML = `
+      <span class="footer-contact-heading-wrap">
+        <span class="footer-contact-heading">${c.heading || ''}</span>
+      </span>
+      ${c.address ? `<a href="${c.addressLink || '#'}" target="_blank" rel="noopener noreferrer" class="footer-contact-line">${c.address}</a>` : ''}
+      ${c.phone ? `<span class="footer-contact-line">${c.phone}</span>` : ''}
+      ${c.email ? `<a href="mailto:${c.email}" class="footer-contact-line">${c.email}</a>` : ''}
+    `;
+  }
+ 
+  const creditEl = document.querySelector('.footer-credit p');
+  if (creditEl && c.credit) creditEl.innerHTML = parseLinks(c.credit);
+}
+ 
 // Show loading state in each panel
 Object.keys(pageKeys).forEach(pageName => {
   const panel = document.querySelector(`[data-page="${pageName}"] .panel-content`);
@@ -252,6 +296,12 @@ fetch(CMS_FILE)
     return res.json();
   })
   .then(data => {
+    // Site-wide content
+    applyAcknowledgement(data.acknowledgement);
+    applyAbout(data.about);
+    applyContact(data.contact);
+ 
+    // Panel content
     Object.entries(pageKeys).forEach(([pageName, key]) => {
       const panel = document.querySelector(`[data-page="${pageName}"] .panel-content`);
       if (!panel) return;
@@ -260,8 +310,10 @@ fetch(CMS_FILE)
       panel.innerHTML = buildPanel(blocks);
  
       panel.querySelectorAll('a').forEach(link => {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
+        if (link.getAttribute('href')?.startsWith('http')) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
       });
     });
   })
@@ -279,8 +331,6 @@ fetch(CMS_FILE)
  
 const panels = document.querySelectorAll(".panel");
  
-// Get the top of the slider section (above all panels)
-// then add each collapsed panel's height to reach the right panel
 function scrollToPanel(panel) {
   const allPanels = [...panels];
   const idx = allPanels.indexOf(panel);
@@ -317,7 +367,6 @@ document.querySelectorAll(".panel-title").forEach(title => {
   });
 });
  
-// Hover to open — desktop only
 document.querySelectorAll(".panel").forEach(panel => {
   panel.addEventListener("mouseenter", () => {
     if (window.innerWidth <= 768) return;
@@ -333,7 +382,6 @@ document.querySelectorAll(".panel").forEach(panel => {
  
 window.addEventListener("load", () => {
  
-  // Desktop only — mobile panels start collapsed
   if (window.innerWidth > 768) {
     openPanel("grasslands-page");
   }
@@ -371,7 +419,6 @@ document.addEventListener("mouseup",   () => cursor.classList.remove("clicking")
 document.addEventListener("mouseleave", () => { cursor.style.opacity = "0"; });
 document.addEventListener("mouseenter", () => { cursor.style.opacity = "1"; });
  
-// Delegation — catches static AND dynamically loaded CMS content
 document.addEventListener("mouseover", e => {
   if (e.target.closest("a, button, .panel-title, #ack-enter")) {
     cursor.classList.add("hovering");

@@ -1,5 +1,5 @@
 media: assets/images
-
+ 
 content:
   - name: site-content
     label: Site Content
@@ -7,6 +7,34 @@ content:
     type: file
     format: json
     fields:
+ 
+      - name: acknowledgement
+        label: Acknowledgement of Country
+        type: object
+        fields:
+          - { name: label, label: Heading label, type: string }
+          - { name: body, label: Body text, type: text }
+          - { name: buttonText, label: Button text, type: string }
+          - { name: artwork, label: Artwork image, type: image }
+          - { name: caption, label: Artwork caption, type: string }
+ 
+      - name: about
+        label: About (intro paragraph)
+        type: object
+        fields:
+          - { name: text, label: Text, type: text }
+ 
+      - name: contact
+        label: Contact
+        type: object
+        fields:
+          - { name: heading, label: Heading, type: string }
+          - { name: address, label: Address, type: string }
+          - { name: addressLink, label: Address link (Google Maps URL), type: string }
+          - { name: phone, label: Phone, type: string }
+          - { name: email, label: Email, type: string }
+          - { name: credit, label: Footer credit line, type: text }
+ 
       - name: grasslands
         label: Grasslands
         type: object
@@ -16,33 +44,12 @@ content:
             type: object
             list: true
             fields:
-              - name: type
-                label: Block type
-                type: select
-                options:
-                  values:
-                    - intro
-                    - heading
-                    - text
-                    - list
-                    - image
-              - name: text
-                label: Text
-                type: text
-                description: "Used for intro, heading, text, and list blocks. For lists, separate each item with a new line."
-              - name: header
-                label: List header (optional)
-                type: string
-                description: "Only used for 'list' blocks — appears above the bulleted list."
-              - name: image
-                label: Image
-                type: image
-                description: "Only used for 'image' blocks."
-              - name: alt
-                label: Image alt text
-                type: string
-                description: "Only used for 'image' blocks. Describes the image for accessibility."
-
+              - { name: type, label: Block type, type: select, options: { values: [intro, heading, text, list, image] } }
+              - { name: text, label: Text, type: text }
+              - { name: header, label: List header (optional), type: string }
+              - { name: image, label: Image, type: image }
+              - { name: caption, label: Image caption, type: string }
+ 
       - name: research
         label: Research
         type: object
@@ -56,8 +63,8 @@ content:
               - { name: text, label: Text, type: text }
               - { name: header, label: List header (optional), type: string }
               - { name: image, label: Image, type: image }
-              - { name: alt, label: Image alt text, type: string }
-
+              - { name: caption, label: Image caption, type: string }
+ 
       - name: education
         label: Education
         type: object
@@ -71,8 +78,8 @@ content:
               - { name: text, label: Text, type: text }
               - { name: header, label: List header (optional), type: string }
               - { name: image, label: Image, type: image }
-              - { name: alt, label: Image alt text, type: string }
-
+              - { name: caption, label: Image caption, type: string }
+ 
       - name: engagement
         label: Engagement
         type: object
@@ -86,8 +93,8 @@ content:
               - { name: text, label: Text, type: text }
               - { name: header, label: List header (optional), type: string }
               - { name: image, label: Image, type: image }
-              - { name: alt, label: Image alt text, type: string }
-
+              - { name: caption, label: Image caption, type: string }
+ 
       - name: nursery
         label: Nursery
         type: object
@@ -101,4 +108,5 @@ content:
               - { name: text, label: Text, type: text }
               - { name: header, label: List header (optional), type: string }
               - { name: image, label: Image, type: image }
-              - { name: alt, label: Image alt text, type: string }
+              - { name: caption, label: Image caption, type: string }
+ 
