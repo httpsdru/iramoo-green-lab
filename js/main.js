@@ -344,6 +344,107 @@ Promise.all(
       if (panel) panel.innerHTML = `<p style="opacity:0.5;">Content unavailable.</p>`;
     }
   });
+ 
+  // Sync all panel heights to match the tallest one
+  requestAnimationFrame(() => {
+    syncPanelHeights();
+ 
+    // Re-sync once any images inside panels finish loading
+    document.querySelectorAll('.panel-content img').forEach(img => {
+      if (!img.complete) {
+        img.addEventListener('load',  () => syncPanelHeights(), { once: true });
+        img.addEventListener('error', () => syncPanelHeights(), { once: true });
+      }
+    });
+  });
+});
+ 
+ 
+// ===============================
+// PANEL HEIGHT SYNC (desktop only)
+// ===============================
+// Measures the rendered content of every panel as if it were active,
+// then sets the slider's min-height to the tallest one so every panel
+// expands to the same length.
+ 
+function syncPanelHeights() {
+  const slider = document.getElementById("contentSlider");
+  if (!slider) return;
+ 
+  // Mobile: panels stack vertically and grow naturally. Clear any inline height.
+  if (window.innerWidth <= 768) {
+    slider.style.height = "";
+    return;
+  }
+ 
+  // Reset to get accurate slider width (CSS will keep it at 100vh)
+  slider.style.height = "";
+ 
+  const sliderWidth = slider.offsetWidth;
+  const allPanels = [...document.querySelectorAll(".panel")];
+  if (!allPanels.length) return;
+ 
+  // Each active panel takes flex 5 out of (4 × 0.35 + 5) = 6.4 total.
+  // Subtract the panel-title width to get the content's actual rendered width.
+  const titleEl = allPanels[0].querySelector(".panel-title");
+  const titleWidth = titleEl ? titleEl.offsetWidth : 80;
+  const activeContentWidth = Math.max((sliderWidth * 5 / 6.4) - titleWidth, 300);
+ 
+  let maxHeight = 0;
+ 
+  allPanels.forEach(panel => {
+    const content = panel.querySelector(".panel-content");
+    if (!content) return;
+ 
+    // Clone the content into an off-screen wrapper sized to the active width,
+    // free of flex-stretch and overflow constraints, so we get its true height.
+    const clone = content.cloneNode(true);
+    clone.style.cssText = `
+      width: 100%;
+      max-width: 1400px;
+      padding: 40px;
+      height: auto;
+      max-height: none;
+      overflow: visible;
+      position: static;
+      opacity: 1;
+      margin: 0;
+      display: block;
+      box-sizing: border-box;
+    `;
+ 
+    const wrap = document.createElement("div");
+    wrap.style.cssText = `
+      position: fixed;
+      left: -99999px;
+      top: 0;
+      width: ${activeContentWidth}px;
+      visibility: hidden;
+      pointer-events: none;
+    `;
+    wrap.appendChild(clone);
+    document.body.appendChild(wrap);
+ 
+    const h = clone.offsetHeight;
+    document.body.removeChild(wrap);
+ 
+    if (h > maxHeight) maxHeight = h;
+  });
+ 
+  // Only grow beyond the viewport if content genuinely overflows.
+  // Otherwise leave the CSS default (height: 100vh) to do its job.
+  if (maxHeight > window.innerHeight) {
+    slider.style.height = maxHeight + "px";
+  } else {
+    slider.style.height = "";
+  }
+}
+ 
+// Re-sync on resize (debounced)
+let _resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(syncPanelHeights, 200);
 });
  
  

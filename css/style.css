@@ -369,7 +369,7 @@ header.dark a {
  
 .enko-slider {
   display: flex;
-  height: 100vh;
+  height: 100vh;        /* was min-height — back to a fixed cap */
   overflow: hidden;
   isolation: isolate;
 }
@@ -710,6 +710,7 @@ header.dark a {
  
 a.footer-contact-line {
   text-decoration: underline;
+  line-height: 1.4;
 }
  
 a.footer-contact-line:hover {
@@ -781,14 +782,13 @@ a.footer-contact-line:hover {
 @media (max-width: 768px) {
 
   .site-footer {
-    padding-top: 80px;
-    padding-left: 20px;
+    padding: 100px 20px 50px;
   }
 
   .footer-inner {
     display: flex;
     flex-direction: column;
-    gap: clamp(28px, 7vw, 48px);
+    gap: clamp(40px, 10vw, 64px);
   }
 
   .footer-left,
@@ -797,9 +797,10 @@ a.footer-contact-line:hover {
   }
 
   .footer-logos {
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: clamp(12px, 3vw, 20px);
+    gap: clamp(16px, 4vw, 24px);
+    margin-top: clamp(16px, 5vw, 32px);
     flex-wrap: wrap;
   }
 
@@ -813,10 +814,15 @@ a.footer-contact-line:hover {
     height: clamp(56px, 20vw, 110px);
   }
 
+  .footer-credit {
+  text-align: left;
+  margin-top: clamp(16px, 5vw, 32px);
+}
+
   .footer-snake {
     width: 120%;
     height: auto;
-    top: 0;
+    margin-top: 60px;
     right: -20%;
   }
 
