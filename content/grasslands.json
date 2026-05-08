@@ -9,12 +9,12 @@
       "text": "The western basalt plains grasslands are one of Australia's most threatened ecosystems. Iramoo Wildflower Grassland is a remnant of this ancient landscape — a living archive of plants, soils and stories that have shaped this Country for millennia."
     },
     {
-      "type": "heading",
-      "text": "What we protect"
+      "type": "intro",
+      "text": "The GREEN Lab has strong links to the three grasslands that are managed by the Cairnlea Conservation Reserves Committee of Management:"
     },
     {
-      "type": "text",
-      "text": "Iramoo holds more than 200 indigenous plant species, including rare wildflowers, native grasses and ground orchids found nowhere else in the region. Each season brings a different bloom, a different story."
+      "type": "list",
+      "text": "[Iramoo Wildflower Grassland Reserve] (https://friendsofiramoograsslands.wordpress.com/iramoo-wildflower-grassland-reserve/)\n[Featherheads Wildflower Grassland](https://friendsofiramoograsslands.wordpress.com/featherheads-wildflower-grassland/)\nPimelea Wildflower Grassland (https:\\friendsofiramoograsslands.wordpress.com\\pimelea-wildflower-reserve\\)\n"
     },
     {
       "type": "list",
