@@ -6,7 +6,7 @@
     },
     {
       "type": "intro",
-      "text": "We host school groups, university classes and community workshops on the grassland — learning by walking, looking, and listening to Country."
+      "text": "We host school groups, university classes and community workshops on the grassland — learning by walking, looking, and listening to Country.\n"
     },
     {
       "type": "heading",
@@ -18,8 +18,8 @@
     },
     {
       "type": "list",
-      "header": "We offer",
-      "text": "Guided grassland walks\nSeasonal wildflower identification sessions\nTeacher professional development\nUniversity field placements"
+      "text": "Guided grassland walks\nSeasonal wildflower identification sessions\nTeacher professional development\nUniversity field placements",
+      "header": "We offer"
     }
   ]
 }
