@@ -161,23 +161,32 @@ const pageKeys = {
   "nursery-page":    "nursery"
 };
  
+// Parse [link text](url) into real <a> tags
+function parseLinks(text) {
+  if (!text) return "";
+  return text.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+  );
+}
+ 
 function renderBlock(b) {
   if (b.type === "text") {
-    return `<div class="cms-block cms-text"><p>${b.text}</p></div>`;
+    return `<div class="cms-block cms-text"><p>${parseLinks(b.text)}</p></div>`;
   }
   if (b.type === "heading") {
-    return `<div class="cms-block cms-heading"><h2>${b.text}</h2></div>`;
+    return `<div class="cms-block cms-heading"><h2>${parseLinks(b.text)}</h2></div>`;
   }
   if (b.type === "list") {
     const items = (b.text || "")
       .split(/\n|•/)
       .map(s => s.trim())
       .filter(s => s.length > 0);
-    const headerHTML = b.header ? `<p class="list-header">${b.header}</p>` : "";
+    const headerHTML = b.header ? `<p class="list-header">${parseLinks(b.header)}</p>` : "";
     return `
       <div class="cms-block cms-list">
         ${headerHTML}
-        <ul>${items.map(item => `<li>${item}</li>`).join("")}</ul>
+        <ul>${items.map(item => `<li>${parseLinks(item)}</li>`).join("")}</ul>
       </div>`;
   }
   if (b.type === "image") {
@@ -215,8 +224,8 @@ function buildPanel(blocks) {
   segments.forEach(seg => {
     if (seg.type === "full") {
       const b = seg.block;
-      if (b.type === "intro")   html += `<div class="cms-full cms-intro"><p>${b.text}</p></div>`;
-      if (b.type === "heading") html += `<div class="cms-full cms-heading"><h2>${b.text}</h2></div>`;
+      if (b.type === "intro")   html += `<div class="cms-full cms-intro"><p>${parseLinks(b.text)}</p></div>`;
+      if (b.type === "heading") html += `<div class="cms-full cms-heading"><h2>${parseLinks(b.text)}</h2></div>`;
       return;
     }
     const all   = seg.blocks;
@@ -370,3 +379,4 @@ document.addEventListener("mouseover", e => {
     cursor.classList.remove("hovering");
   }
 });
+ 
