@@ -18,12 +18,12 @@
     },
     {
       "type": "list",
-      "header": "Key species",
-      "text": "Kangaroo Grass (Themeda triandra)\nSpiny Rice-flower (Pimelea spinescens)\nButton Wrinklewort (Rutidosis leptorrhynchoides)\nMatted Flax-lily (Dianella amoena)\nGolden Sun Moth (Synemon plana)"
+      "text": "Kangaroo Grass (Themeda triandra)\nSpiny Rice-flower (Pimelea spinescens)\nButton Wrinklewort (Rutidosis leptorrhynchoides)\nMatted Flax-lily (Dianella amoena)\nGolden Sun Moth (Synemon plana)",
+      "header": "Key species"
     },
     {
       "type": "image",
-      "image": "/assets/images/grasslands-1.jpg",
+      "image": "/assets/images/Close-up detail in a landscape offering a distant treeline horizon-3.jpg",
       "caption": "Iramoo grassland in spring bloom"
     }
   ]
