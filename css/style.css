@@ -779,36 +779,47 @@ a.footer-contact-line:hover {
 }
  
 @media (max-width: 768px) {
-  
+
   .site-footer {
     padding-top: 80px;
     padding-left: 20px;
   }
- 
+
   .footer-inner {
     display: flex;
     flex-direction: column;
     gap: 24px;
   }
- 
+
   .footer-left,
   .footer-logos {
     width: 100%;
   }
- 
+
   .footer-logos {
     justify-content: flex-start;
     align-items: center;
-    gap: 20px;
+    gap: clamp(12px, 3vw, 20px);
+    flex-wrap: wrap;
   }
- 
+
+  .footer-logos img {
+    height: clamp(36px, 9vw, 60px);
+    max-width: 100%;
+    width: auto;
+  }
+
+  .footer-logos a:last-child img {
+    height: clamp(70px, 18vw, 120px);
+  }
+
   .footer-snake {
     width: 120%;
     height: auto;
     top: 0;
     right: -20%;
   }
- 
+
 }
  
 /* ======================= */
