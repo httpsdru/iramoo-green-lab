@@ -163,7 +163,7 @@ header.dark a {
 /* ======================= */
  
 .intro-text {
-  padding: 20px 10%;
+  padding: 20px 25px;
   font-size: 1.1rem;
   margin: auto;
 }
@@ -465,26 +465,24 @@ header.dark a {
 }
  
 .cms-image {
-  position: relative;
+  padding-bottom: 120px;
 }
 
 .cms-image .cms-caption {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  margin: 0;
-  padding: 4px 10px;
+  display: inline-block;
+  margin: 50px 0 0 0px;
+  padding: 0;
   font-family: "QuadrantTextMono-Regular", monospace;
-  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  font-size: clamp(0.6rem, 1.2vw, 0.9rem);
   font-weight: 400;
   letter-spacing: 0.04em;
-  color: #083d1c;
-  background: #9fff45;
+  color: #4c7159;
+  mix-blend-mode: normal;
   transform: rotate(-8deg);
-  transform-origin: left bottom;
-  display: inline-block;
-  max-width: 70%;
+  transform-origin: top left;
+  position: relative;
   z-index: 2;
+  max-width: 70%;
 }
 
 /* Heading highlight */
