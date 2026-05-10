@@ -464,14 +464,27 @@ header.dark a {
   color: #083d1c;
 }
  
+.cms-image {
+  position: relative;
+}
+
 .cms-image .cms-caption {
-  font-size: 0.85rem;
-  line-height: 1.4;
-  font-weight: 300;
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  margin: 0;
+  padding: 4px 10px;
+  font-family: "QuadrantTextMono-Regular", monospace;
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: #083d1c;
-  opacity: 0.6;
-  margin-top: 10px;
-  letter-spacing: 0.02em;
+  background: #9fff45;
+  transform: rotate(-8deg);
+  transform-origin: left bottom;
+  display: inline-block;
+  max-width: 70%;
+  z-index: 2;
 }
 
 /* Heading highlight */
