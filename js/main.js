@@ -178,6 +178,42 @@ function parseLinks(text) {
   );
 }
  
+// Wrap each letter of an element's text in a span so it can animate.
+// Preserves <a> tags and other inline elements — only wraps text nodes.
+// Accepts a single element or a list of elements.
+function wrapLettersIn(target, stagger = 0.18) {
+  const list = target.length !== undefined ? [...target] : [target];
+ 
+  list.forEach(el => {
+    if (!el || el.dataset.lettersWrapped === "true") return;
+ 
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) textNodes.push(node);
+ 
+    let letterIndex = 0;
+    textNodes.forEach(textNode => {
+      const fragment = document.createDocumentFragment();
+      [...textNode.textContent].forEach(ch => {
+        if (ch === ' ') {
+          fragment.appendChild(document.createTextNode(' '));
+        } else {
+          const span = document.createElement('span');
+          span.className = 'letter-wave';
+          span.style.animationDelay = (letterIndex * stagger) + 's';
+          span.textContent = ch;
+          fragment.appendChild(span);
+          letterIndex++;
+        }
+      });
+      textNode.parentNode.replaceChild(fragment, textNode);
+    });
+ 
+    el.dataset.lettersWrapped = "true";
+  });
+}
+ 
 function renderBlock(b) {
   if (b.type === "text") {
     return `<div class="cms-block cms-text"><p>${parseLinks(b.text)}</p></div>`;
@@ -289,7 +325,10 @@ function applyContact(c) {
   }
  
   const creditEl = document.querySelector('.footer-credit p');
-  if (creditEl && c.credit) creditEl.innerHTML = parseLinks(c.credit);
+  if (creditEl && c.credit) {
+    creditEl.innerHTML = parseLinks(c.credit);
+    wrapLettersIn(creditEl, 0.06);
+  }
 }
  
 function applyPanel(pageName, key, data) {
@@ -305,6 +344,9 @@ function applyPanel(pageName, key, data) {
       link.setAttribute('rel', 'noopener noreferrer');
     }
   });
+ 
+  // Wrap each caption letter in a span for the wave animation
+  wrapLettersIn(panel.querySelectorAll('.cms-caption'));
 }
  
 // Show loading state in each panel
