@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iramoogreenlab.org/sitemap.xml
